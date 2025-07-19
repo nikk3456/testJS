@@ -1,4 +1,4 @@
-function table(){
+function table({ users }){
     return(
         <div> 
             <table>
@@ -8,18 +8,14 @@ function table(){
                     <th>Пол</th>
                     <th>Телефон</th>
                 </tr>
-                <tr>
-                    <td>iPhone 12 Pro</td>
-                    <td>$999</td>
-                </tr>
-                <tr>
-                    <td>iPhone 12</td>
-                    <td>$799</td>
-                </tr>
-                <tr>
-                    <td>iPhone 12 mini</td>
-                    <td>$699</td>
-                </tr>
+                {users.map(user => (
+                    <tr key={user.id}>
+                        <td>{`${user.lastName} ${user.firstName} ${user.maidenName}`}</td>
+                        <td>{user.maidenName}</td>
+                        <td>{user.age}</td>
+                        <td>{user.gender}</td>
+                        <td>{user.phone}</td>
+                    </tr>))}
             </table>
         </div>
     );

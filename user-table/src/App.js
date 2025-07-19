@@ -3,9 +3,14 @@ import table from './components/table';
 import { getUsers } from "./untils/api";
 
 function App(){
-  /*значение, изменени->начальное*/
+  /*хранение - значение, изменени->начальное*/
   const [users, setUsers] = useState([]);
   const [errors, setErrors] = useState("");
+
+  /*действие [когда изменяется переменныя повторить]*/
+  useEffect(()=>{
+    getUsers().then(data => setUsers(data.users)).catch(err => setErrors(err.errors))
+  },[]);
   
   
   return(
@@ -13,7 +18,11 @@ function App(){
     без дефисов!!*/
     <div style={{maxWidth:'1400px', width:'100%'}}> 
       <h1 style={{textAlign: 'center'}}>Таблица пользователей:</h1>
-      <table/>
+      {errors &&
+        <p style={{color: 'red'}}>
+          {errors}
+        </p>}
+      <table users={users} />
     </div>    
   );
 }
