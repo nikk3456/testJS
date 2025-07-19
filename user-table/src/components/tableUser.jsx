@@ -1,4 +1,4 @@
-function table({ users }){
+function TableUser({ users }){
     return(
         <div> 
             <table>
@@ -22,4 +22,4 @@ function table({ users }){
 }
 
 //для удобного экспорта
-export default table;
+export default TableUser;

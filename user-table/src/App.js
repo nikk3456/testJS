@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import table from './components/table';
-import { getUsers } from "./untils/api";
+import TableUser from './components/tableUser';
+import { getUsers } from "./utils/api";
 
 function App(){
   /*хранение - значение, изменени->начальное*/
@@ -22,7 +22,7 @@ function App(){
         <p style={{color: 'red'}}>
           {errors}
         </p>}
-      <table users={users} />
+      <TableUser users={users} />
     </div>    
   );
 }
