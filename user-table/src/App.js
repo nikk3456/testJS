@@ -1,7 +1,13 @@
+import React, { useEffect, useState } from "react";
 import table from './components/table';
-
+import { getUsers } from "./untils/api";
 
 function App(){
+  /*значение, изменени->начальное*/
+  const [users, setUsers] = useState([]);
+  const [errors, setErrors] = useState("");
+  
+  
   return(
     /*JS внутри JSX + сам стиль -> {{}}
     без дефисов!!*/
