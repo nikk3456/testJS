@@ -16,7 +16,7 @@ function TableUser({ users }){
     };
 
     //приманение на пользователей
-    const sortUsers = (() =>{
+    const sortUsers = useMemo(() =>{
         if (sortOption==='none' || !sortField){
             return users;
         }
@@ -29,8 +29,8 @@ function TableUser({ users }){
                 A = `${a.lastName} ${a.firstName} ${a.maidenName}`.toLowerCase();
                 B = `${b.lastName} ${b.firstName} ${b.maidenName}`.toLowerCase();
             } else{
-                A=a[setsortField];
-                B=b[setsortField];
+                A=a[sortField];
+                B=b[sortField];
             }
             
             if(typeof A =='string'){
@@ -38,7 +38,7 @@ function TableUser({ users }){
             }
             return sortOption === 'asc'? A-B:B-A;
         });
-    }, [users,setsortField,setSortOption]);
+    }, [users,sortField,sortOption]);
     
     
     
@@ -46,12 +46,12 @@ function TableUser({ users }){
         <div> 
             <table style={{width:'500px', border:'4mm ridge rgba(89, 192, 252, 0.6)', borderCollapse: 'collapse'}}>
                 <tr>
-                    <th style={{textAlign:'left'}}>ФИО</th>
-                    <th style={{textAlign:'left'}}>Возраст</th>
-                    <th style={{textAlign:'left'}}>Пол</th>
-                    <th style={{textAlign:'left'}}>Телефон</th>
+                    <th onClick={() => processSort('fullName')} style={{textAlign:'left'}}>ФИО</th>
+                    <th onClick={() => processSort('age')} style={{textAlign:'left'}}>Возраст</th>
+                    <th onClick={() => processSort('gender')} style={{textAlign:'left'}}>Пол</th>
+                    <th onClick={() => processSort('phone')} style={{textAlign:'left'}}>Телефон</th>
                 </tr>
-                {users.map(user => (
+                {sortUsers.map(user => (
                     <tr key={user.id}>
                         <td style={{ border: '2px solid #2a729cff'}}>{`${user.lastName} ${user.firstName} ${user.maidenName}`}</td>
                         <td style={{ border: '2px solid #2a729cff'}}>{user.age}</td>
